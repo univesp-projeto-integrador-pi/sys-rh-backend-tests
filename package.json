@@ -6,23 +6,18 @@
     "test": "jest --runInBand",
     "test:watch": "jest --watch --runInBand"
   },
-  "jest": {
-    "preset": "ts-jest",
-    "testEnvironment": "node",
-    "testMatch": ["**/src/tests/**/*.test.ts"],
-    "globalSetup": "<rootDir>/src/setup/global.ts",
-    "setupFiles": ["<rootDir>/src/setup/jest.setup.ts"]
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@jest/test-result": "^30.3.0",
+    "@jest/test-sequencer": "^30.3.0",
     "@types/jest": "^30.0.0",
     "@types/node": "^25.5.0",
-    "axios": "^1.13.6",
-    "dotenv": "^17.3.1",
+    "axios": "^1.14.0",
+    "dotenv": "^17.4.0",
     "jest": "^30.3.0",
-    "ts-jest": "^29.4.6",
+    "ts-jest": "^29.4.9",
     "typescript": "^6.0.2"
   }
 }
