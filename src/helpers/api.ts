@@ -5,11 +5,9 @@ dotenv.config();
 
 const api: AxiosInstance = axios.create({
   baseURL: process.env.API_URL || 'http://localhost:3000',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  validateStatus: () => true, // não lança erro em status 4xx/5xx
-  withCredentials: true,      // envia cookies nas requisições
+  headers: { 'Content-Type': 'application/json' },
+  validateStatus: () => true,
+  withCredentials: true,
 });
 
 export function setAuthToken(token: string) {
@@ -18,6 +16,17 @@ export function setAuthToken(token: string) {
 
 export function clearAuthToken() {
   delete api.defaults.headers.common['Authorization'];
+}
+
+export async function fetchAndSetCsrfToken() {
+  const res = await api.get('/api/csrf-token');
+  const csrfToken = res.data.csrfToken;
+  api.defaults.headers.common['x-csrf-token'] = csrfToken;
+  return csrfToken;
+}
+
+export function clearCsrfToken() {
+  delete api.defaults.headers.common['x-csrf-token'];
 }
 
 export default api;

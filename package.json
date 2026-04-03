@@ -4,7 +4,8 @@
   "description": "Suite de testes de integração para a RH API",
   "scripts": {
     "test": "jest --runInBand",
-    "test:watch": "jest --watch --runInBand"
+    "test:watch": "jest --watch --runInBand",
+    "test:stress": "jest src/tests/rateLimit.test.ts"
   },
   "keywords": [],
   "author": "",
@@ -14,7 +15,7 @@
     "@jest/test-sequencer": "^30.3.0",
     "@types/jest": "^30.0.0",
     "@types/node": "^25.5.0",
-    "axios": "^1.14.0",
+    "axios": "^1.13.0",
     "dotenv": "^17.4.0",
     "jest": "^30.3.0",
     "ts-jest": "^29.4.9",

@@ -1,8 +1,9 @@
 
 export const userFactory = (override = {}) => ({
   name: 'Recrutador Teste',
-  email: `recrutador_${Date.now()}@empresa.com`,
+  email: `user_${Date.now()}_${Math.random().toString(36).slice(2)}@empresa.com`,
   password: 'Senha@123',
+  role: 'RECRUITER',
   ...override,
 });
 

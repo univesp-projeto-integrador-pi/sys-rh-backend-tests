@@ -1,4 +1,4 @@
-import api, { setAuthToken, clearAuthToken } from '../helpers/api';
+import api, { setAuthToken, clearAuthToken, fetchAndSetCsrfToken } from '../helpers/api';
 import { userFactory } from '../helpers/factories';
 
 describe('Auth', () => {
@@ -7,6 +7,7 @@ describe('Auth', () => {
 
   beforeAll(async () => {
     await api.post('/api/auth/register', user);
+    await fetchAndSetCsrfToken();
   });
 
   afterAll(() => clearAuthToken());
@@ -15,7 +16,6 @@ describe('Auth', () => {
     it('deve registrar um novo usuário', async () => {
       const newUser = userFactory();
       const res = await api.post('/api/auth/register', newUser);
-
       expect(res.status).toBe(201);
       expect(res.data).toHaveProperty('id');
       expect(res.data.email).toBe(newUser.email);
@@ -23,7 +23,6 @@ describe('Auth', () => {
 
     it('deve retornar 400 quando email já cadastrado', async () => {
       const res = await api.post('/api/auth/register', user);
-
       expect(res.status).toBe(400);
       expect(res.data.message).toBe('Email já cadastrado');
     });
@@ -63,7 +62,6 @@ describe('Auth', () => {
       });
 
       const res = await api.post('/api/auth/refresh');
-
       expect(res.status).toBe(200);
       expect(res.data).toHaveProperty('accessToken');
     });
